@@ -2,6 +2,7 @@ package handler
 
 import (
 	"fmt"
+	"github.com/openflagr/flagr/pkg/cache"
 	"log"
 	"math/rand"
 	"sync"
@@ -94,6 +95,7 @@ func (e *eval) PostEvaluationBatch(params evaluation.PostEvaluationBatchParams) 
 			evalResult := EvalFlag(evalContext)
 			log.Println("Requested flag key")
 			log.Println(evalResult.FlagKey)
+			cache.GetFlagsUseCache().AddFlagKey(evalResult.FlagKey)
 			results.EvaluationResults = append(results.EvaluationResults, evalResult)
 		}
 	}

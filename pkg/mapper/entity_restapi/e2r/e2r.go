@@ -1,15 +1,13 @@
 package e2r
 
 import (
-	"time"
-
 	"encoding/json"
-
 	"github.com/go-openapi/strfmt"
+	"github.com/openflagr/flagr/pkg/cache"
 	"github.com/openflagr/flagr/pkg/entity"
 	"github.com/openflagr/flagr/pkg/util"
-
 	"github.com/openflagr/flagr/swagger_gen/models"
+	"time"
 )
 
 // MapFlag maps flag
@@ -28,7 +26,7 @@ func MapFlag(e *entity.Flag) (*models.Flag, error) {
 	r.Segments = MapSegments(e.Segments)
 	r.Variants = MapVariants(e.Variants)
 	r.Tags = MapTags(e.Tags)
-
+	r.IsUsingInBatch = util.BoolPtr(cache.GetFlagsUseCache().Exists(e.Key))
 	return r, nil
 }
 

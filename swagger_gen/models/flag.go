@@ -66,6 +66,8 @@ type Flag struct {
 
 	// variants
 	Variants []*Variant `json:"variants"`
+
+	IsUsingInBatch *bool `json:"isUsingInBatch"`
 }
 
 // Validate validates this flag
