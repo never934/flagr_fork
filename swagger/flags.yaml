@@ -1,0 +1,74 @@
+get:
+  tags:
+    - flag
+  operationId: findFlags
+  parameters:
+    - in: query
+      name: limit
+      type: integer
+      format: int64
+      description: the numbers of flags to return
+    - in: query
+      name: enabled
+      type: boolean
+      description: return flags having given enabled status
+    - in: query
+      name: description
+      type: string
+      description: return flags exactly matching given description
+    - in: query
+      name: tags
+      type: string
+      description: return flags with the given tags (comma separated)
+    - in: query
+      name: description_like
+      type: string
+      description: return flags partially matching given description
+    - in: query
+      name: key
+      type: string
+      description: return flags matching given key
+    - in: query
+      name: offset
+      type: integer
+      format: int64
+      description: return flags given the offset, it should usually set together with limit
+    - in: query
+      name: preload
+      type: boolean
+      description: return flags with preloaded segments and variants
+    - in: query
+      name: deleted
+      type: boolean
+      description: return all deleted flags
+  responses:
+    200:
+      description: list all the flags
+      schema:
+        type: array
+        items:
+          $ref: "#/definitions/flag"
+    default:
+      description: generic error response
+      schema:
+        $ref: "#/definitions/error"
+post:
+  tags:
+    - flag
+  operationId: createFlag
+  parameters:
+    - in: body
+      name: body
+      description: create a flag
+      required: true
+      schema:
+        $ref: "#/definitions/createFlagRequest"
+  responses:
+    200:
+      description: returns the created flag
+      schema:
+        $ref: "#/definitions/flag"
+    default:
+      description: generic error response
+      schema:
+        $ref: "#/definitions/error"

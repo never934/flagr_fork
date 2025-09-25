@@ -1,0 +1,8 @@
+{
+  "entityID": "123",
+    "entityType": "report",
+    "entityContext": {
+      "state": "CA"
+    },
+    "flagID": 1
+}
