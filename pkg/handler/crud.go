@@ -118,6 +118,7 @@ func (c *crud) FindFlags(params flag.FindFlagsParams) middleware.Responder {
 	} else {
 		tx = tx.Where("deleted_at is null")
 	}
+
 	var err error
 	tx = tx.Order("id").Where(q)
 	if params.Tags != nil {

@@ -61,8 +61,8 @@ var Config = struct {
 	"json_http"           "https://example.com/flags.json"     # (it automatically sets EvalOnlyMode=true)
 
 	*/
-	DBDriver        string `env:"FLAGR_DB_DBDRIVER" envDefault:"mysql"`
-	DBConnectionStr string `env:"FLAGR_DB_DBCONNECTIONSTR" envDefault:"root:@tcp(127.0.0.1:18100)/flagr?parseTime=true"`
+	DBDriver        string `env:"FLAGR_DB_DBDRIVER" envDefault:"sqlite3"`
+	DBConnectionStr string `env:"FLAGR_DB_DBCONNECTIONSTR" envDefault:"flagr.sqlite"`
 	// DBConnectionDebug controls whether to show the database connection debugging logs
 	// warning: it may log the credentials to the stdout
 	DBConnectionDebug bool `env:"FLAGR_DB_DBCONNECTION_DEBUG" envDefault:"true"`
@@ -107,7 +107,7 @@ var Config = struct {
 	PrometheusIncludeLatencyHistogram bool `env:"FLAGR_PROMETHEUS_INCLUDE_LATENCY_HISTOGRAM" envDefault:"false"`
 
 	// RecorderEnabled - enable data records logging
-	RecorderEnabled bool `env:"FLAGR_RECORDER_ENABLED" envDefault:"true"`
+	RecorderEnabled bool `env:"FLAGR_RECORDER_ENABLED" envDefault:"false"`
 	// RecorderType - the pipeline to log data records, e.g. Kafka
 	RecorderType string `env:"FLAGR_RECORDER_TYPE" envDefault:"kafka"`
 

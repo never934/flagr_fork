@@ -1,13 +1,16 @@
 package e2r
 
 import (
-	"encoding/json"
-	"github.com/go-openapi/strfmt"
 	"github.com/openflagr/flagr/pkg/cache"
+	"time"
+
+	"encoding/json"
+
+	"github.com/go-openapi/strfmt"
 	"github.com/openflagr/flagr/pkg/entity"
 	"github.com/openflagr/flagr/pkg/util"
+
 	"github.com/openflagr/flagr/swagger_gen/models"
-	"time"
 )
 
 // MapFlag maps flag

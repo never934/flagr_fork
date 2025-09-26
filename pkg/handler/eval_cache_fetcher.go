@@ -2,6 +2,7 @@ package handler
 
 import (
 	"fmt"
+	"github.com/openflagr/flagr/pkg/cache"
 	"io"
 	"net/http"
 	"os"
@@ -147,5 +148,8 @@ func (df *dbFetcher) fetch() ([]entity.Flag, error) {
 	// doc: http://jinzhu.me/gorm/crud.html#preloading-eager-loading
 	fs := []entity.Flag{}
 	err := entity.PreloadSegmentsVariantsTags(df.db).Find(&fs).Error
+	for _, flag := range fs {
+		cache.GetFlagsUseCache().AddFlagKey(flag.Key)
+	}
 	return fs, err
 }

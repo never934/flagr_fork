@@ -44,6 +44,10 @@ type Flag struct {
 	// Minimum: 1
 	ID int64 `json:"id,omitempty"`
 
+	// is using in batch
+	// Required: true
+	IsUsingInBatch *bool `json:"isUsingInBatch"`
+
 	// unique key representation of the flag
 	// Min Length: 1
 	Key string `json:"key,omitempty"`
@@ -66,8 +70,6 @@ type Flag struct {
 
 	// variants
 	Variants []*Variant `json:"variants"`
-
-	IsUsingInBatch *bool `json:"isUsingInBatch"`
 }
 
 // Validate validates this flag
@@ -87,6 +89,10 @@ func (m *Flag) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIsUsingInBatch(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -153,6 +159,15 @@ func (m *Flag) validateID(formats strfmt.Registry) error {
 	}
 
 	if err := validate.MinimumInt("id", "body", m.ID, 1, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Flag) validateIsUsingInBatch(formats strfmt.Registry) error {
+
+	if err := validate.Required("isUsingInBatch", "body", m.IsUsingInBatch); err != nil {
 		return err
 	}
 

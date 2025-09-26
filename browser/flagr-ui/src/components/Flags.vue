@@ -54,7 +54,7 @@
             style="width: 100%"
           >
             <el-table-column prop="id" align="center" label="Flag ID" sortable fixed width="95"></el-table-column>
-            <el-table-column prop="isUsingInBatch" align="center" label="Using" fixed width="95">
+            <el-table-column prop="isUsingInBatch" align="center" label="Using" sortable fixed width="95">
               <template slot-scope="scope">
                 <el-tag
                     :type="scope.row.isUsingInBatch ? 'success' : 'danger'"

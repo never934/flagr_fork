@@ -977,6 +977,7 @@ definitions:
       - description
       - enabled
       - dataRecordsEnabled
+      - isUsingInBatch
     properties:
       id:
         type: integer
@@ -1024,6 +1025,8 @@ definitions:
       updatedAt:
         type: string
         format: date-time
+      isUsingInBatch:
+        type: boolean
   createFlagRequest:
     type: object
     required:
